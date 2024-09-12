@@ -84,9 +84,9 @@ runs:
       shell: bash
       run: |
         if ! command -v firebase &> /dev/null; then
-          curl -sL https://firebase.tools | bash
+          curl -sL https://firebase.tools | sed s/latest/v13.16.0/ | bash
         elif test -f /usr/local/bin/firebase; then
-          curl -sL https://firebase.tools | upgrade=${{ inputs.upgrade }} bash
+          curl -sL https://firebase.tools | sed s/latest/v13.16.0/ | upgrade=${{ inputs.upgrade }} bash
         fi
     - name: Run firebase appdistribution:distribute 
       shell: bash
